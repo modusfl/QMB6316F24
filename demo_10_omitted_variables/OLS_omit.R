@@ -71,7 +71,7 @@ source('../tools/sim_tools.R')
 # Dependent Variable: Property values (in Millions)
 
 beta_0          <-   0.10    # Intercept
-beta_income     <-   5.00    # Slope ceofficient for income
+beta_income     <-   5.00    # Slope coefficient for income
 beta_cali       <-   0.25    # Slope coefficient for California
 beta_earthquake <- - 0.50    # Slope coefficient for earthquake
 # beta_earthquake <- - 0.00    # Slope coefficient for earthquake

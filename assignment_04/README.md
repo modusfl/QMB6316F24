@@ -11,7 +11,8 @@ In particular, observe the statistics printed at the bottom.
 
 
 a. Copy and paste the means and standard deviations from the output after the commands
-```sapply(reg_results[, full_list_of_variables], mean)``` 
+intercept       mileage      accident        damage 
+ 4.987823e+04 -1.979419e-01 -4.998484e+03 -1.991525e+04 
 and ```sapply(reg_results[, full_list_of_variables], sd)```. 
 
 
