@@ -213,16 +213,51 @@ summary(lm_model_5)
 
 
 # Estimate a regression model.
-lm_model_6 <- lm(data = tractor_full,
-                 formula = log_saleprice ~ horsepower + squared_horsepower +
-                   age + enghours +
-                   cab +
-                   # diesel + 
-                   fwd + johndeere)
+# Load necessary libraries
+library(ggplot2)
 
-# Output the results to screen.
-summary(lm_model_6)
+# Add the quadratic term to the dataset
+tractor_full$squared_horsepower <- tractor_full$horsepower^2
 
+# Fit the quadratic model
+lm_model_quadratic <- lm(data = tractor_full,
+                         formula = log_saleprice ~ horsepower + squared_horsepower +
+                           age + enghours + cab + diesel + fwd + johndeere)
+
+# Output summary of the model
+summary(lm_model_quadratic)
+
+# Compare adjusted R-squared
+summary(lm_model_2)$adj.r.squared  # Simpler model
+summary(lm_model_quadratic)$adj.r.squared  # Quadratic model
+
+
+
+# Add interaction term to the dataset
+tractor_full$age_johndeere <- tractor_full$age * tractor_full$johndeere
+
+# Fit the model with the interaction term
+lm_model_interaction <- lm(data = tractor_full,
+                           formula = log_saleprice ~ horsepower + squared_horsepower +
+                             age + enghours + cab + diesel + fwd + johndeere +
+                             age:johndeere)
+
+# Output the summary of the model
+summary(lm_model_interaction)
+
+# Test Hypothesis
+
+# Add interaction term for engine hours and John Deere
+tractor_full$enghours_johndeere <- tractor_full$enghours * tractor_full$johndeere
+
+# Fit the model with the interaction term
+lm_model_enghours <- lm(data = tractor_full,
+                        formula = log_saleprice ~ horsepower + squared_horsepower +
+                          age + enghours + cab + diesel + fwd + johndeere +
+                          enghours:johndeere)
+
+# Output the summary of the model
+summary(lm_model_enghours)
 
 ##################################################
 # End
